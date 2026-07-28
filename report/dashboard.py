@@ -153,12 +153,12 @@ class BarChart(MatplotlibViz):
         # We want to visualize the mean of the predict_proba output
         if model.name == "team":
             pred = predictions.mean()
-            
+
         # Otherwise set `pred` to the first value
         # of the predict_proba output
         else:
             pred = predictions[0]
-        
+
         # Initialize a matplotlib subplot
         fig, ax = plt.subplots()
         
@@ -194,7 +194,7 @@ class NotesTable(DataTable):
     def component_data(self, asset_id, model):
         
         # Using the model and entity_id arguments
-        # pass the entity_id to the model's .notes 
+        # pass the entity_id to the model's .notes
         # method. Return the output
         return model.notes(asset_id)
     
@@ -216,19 +216,20 @@ class DashboardFilters(FormGroup):
             id="selector",
             name="user-selection")
         ]
-    
+
+
 # Create a subclass of CombinedComponents
 # called `Report`
 class Report(CombinedComponent):
 
     # Set the `children`
     # class attribute to a list
-    # containing initialized instances 
+    # containing initialized instances
     # of the header, dashboard filters,
     # data visualizations, and notes table
     children = [Header(), DashboardFilters(), Visualizations(), NotesTable()]
 
-# Initialize a fasthtml app 
+# Initialize a fasthtml app
 app = FastHTML()
 
 # Initialize the `Report` class
@@ -245,15 +246,16 @@ def root():
     # Return the result
     return report(1, Employee())
 
+
 # Create a route for a get request
 # Set the route's path to receive a request
 # for an employee ID so `/employee/2`
 # will return the page for the employee with
-# an ID of `2`. 
-# parameterize the employee ID 
+# an ID of `2`.
+# parameterize the employee ID
 # to a string datatype
 @app.get('/employee/{employee_id}')
-def employee(employee_id : int):
+def employee(employee_id: int):
 
     # Call the initialized report
     # pass the ID and an instance
@@ -261,15 +263,16 @@ def employee(employee_id : int):
     # Return the result
     return report(employee_id, Employee())
 
+
 # Create a route for a get request
 # Set the route's path to receive a request
 # for a team ID so `/team/2`
 # will return the page for the team with
-# an ID of `2`. 
+# an ID of `2`.
 # parameterize the team ID 
 # to a string datatype
 @app.get('/team/{team_id}')
-def team(team_id : int):
+def team(team_id: int):
 
     # Call the initialized report
     # pass the id and an instance
@@ -299,6 +302,6 @@ async def update_data(r):
         return RedirectResponse(f"/employee/{id}", status_code=303)
     elif profile_type == 'Team':
         return RedirectResponse(f"/team/{id}", status_code=303)
-    
+
 
 serve()

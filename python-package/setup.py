@@ -1,19 +1,20 @@
 from pathlib import Path
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
 
 cwd = Path(__file__).parent.resolve()
 
-requirements = (cwd / 'employee_events' / 'requirements.txt').read_text().split('\n')
+requirements = (cwd / "employee_events" / "requirements.txt").read_text().split("\n")
 
 setup_args = dict(
-    name='employee_events',
-    version='0.0',
-    description='SQL Query API',
+    name="employee_events",
+    version="0.0",
+    description="SQL Query API",
     packages=find_packages(),
-    package_data={'': ['employee_events.db', 'requirements.txt']},
+    package_data={"": ["employee_events.db", "requirements.txt"]},
     include_package_data=True,
     install_requires=requirements,
-    )
+)
 
 if __name__ == "__main__":
     setup(**setup_args)

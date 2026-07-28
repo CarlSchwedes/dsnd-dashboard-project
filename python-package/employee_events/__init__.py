@@ -1,6 +1,6 @@
 from .employee import Employee
-from .team import Team
 from .query_base import QueryBase
 from .sql_execution import *
+from .team import Team
 
-__all__ = ['Employee', 'Team', 'QueryBase', 'sql_execution']
+__all__ = ["Employee", "Team", "QueryBase", "sql_execution"]
